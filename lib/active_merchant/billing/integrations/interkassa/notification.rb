@@ -13,7 +13,7 @@ module ActiveMerchant #:nodoc:
             params['ik_shop_id']
           end
           
-          def order
+          def item_id
             params['ik_payment_id']
           end
 
@@ -54,27 +54,16 @@ module ActiveMerchant #:nodoc:
             params['ik_payment_amount']
           end
 
-          def generate_md5_string
-            [account, gross, order, currency, custom_fields, status, transaction_id, exchange, fees_payer, @options[:md5secret]].flatten.compact.join(':')
+          def generate_signature_string
+            [account, gross, item_id, currency, custom_fields, status, transaction_id, exchange, fees_payer, @options[:md5secret]].flatten.compact.join(':')
           end
           
-          def generate_md5_signature
-            Digest::MD5.hexdigest(generate_md5_string)
+          def generate_signature
+            Digest::MD5.hexdigest(generate_signature_string)
           end
 
           def acknowledge      
-            security_key == generate_md5_signature.upcase
-          end
-
- private
-
-          # Take the posted data and move the relevant data into a hash
-          def parse(post)
-            @raw = post
-            for line in post.split('&')
-              key, value = *line.scan( %r{^(\w+)\=(.*)$} ).flatten
-              params[key] = value
-            end
+            security_key == generate_signature.upcase
           end
         end
       end

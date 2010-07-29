@@ -21,10 +21,10 @@ class InterkassaHelperTest < Test::Unit::TestCase
     assert_field 'ik_baggage_fields', 'tel: +123 456 7890'
   end
   
-  def test_md5_string_generation
+  def test_signature_string_generation
     @helper.custom_fields 'tel: +123 456 7890'
     
-    assert_equal '64C18529-4B94-0B5D-7405-F2752F2B716C:500:1234:webmoneyz:tel: +123 456 7890:secret', @helper.generate_md5_string
+    assert_equal '64C18529-4B94-0B5D-7405-F2752F2B716C:500:1234:webmoneyz:tel: +123 456 7890:secret', @helper.generate_signature_string
   end
   
   def test_signature_generation

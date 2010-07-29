@@ -10,16 +10,16 @@ module ActiveMerchant #:nodoc:
           end
 
           def form_fields
-            @fields.merge('ik_sign_hash' => generate_md5_signature)
+            @fields.merge('ik_sign_hash' => generate_signature)
           end
             
-          def generate_md5_string
+          def generate_signature_string
             main_params = [:account, :amount, :order, :currency, :custom_fields].map {|key| @fields[mappings[key]]}
             [main_params, @md5secret].flatten.compact.join(':')
           end
           
-          def generate_md5_signature
-            Digest::MD5.hexdigest(generate_md5_string).upcase
+          def generate_signature
+            Digest::MD5.hexdigest(generate_signature_string).upcase
           end
           
           # Replace with the real mapping

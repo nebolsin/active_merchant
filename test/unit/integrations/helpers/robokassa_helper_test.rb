@@ -14,8 +14,8 @@ class RobokassaHelperTest < Test::Unit::TestCase
     assert_field 'InvId', '123'
   end
   
-  def test_md5_string
-    assert_equal 'test_account:500:123:secret', @helper.generate_md5_string
+  def test_signature_string
+    assert_equal 'test_account:500:123:secret', @helper.generate_signature_string
   end
   
   def test_custom_fields
@@ -26,10 +26,10 @@ class RobokassaHelperTest < Test::Unit::TestCase
     assert_field 'shpMySuperParam', '456'
   end
 
-  def test_md5_string_with_custom_fields
+  def test_signature_string_with_custom_fields
     @helper.shpb = '456'
     @helper.shpa = '123'
     
-    assert_equal 'test_account:500:123:secret:shpa=123:shpb=456', @helper.generate_md5_string
+    assert_equal 'test_account:500:123:secret:shpa=123:shpb=456', @helper.generate_signature_string
   end
 end

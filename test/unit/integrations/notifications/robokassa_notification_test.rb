@@ -33,7 +33,7 @@ class RobokassaNotificationTest < Test::Unit::TestCase
 
   private
   def http_raw_data
-    "InvId=123&OutSum=500&SignatureValue=4a827a06c6e54595c2bd8f67fb7a0091&shpMySuperParam=456&shpa=123"
+    "InvId=123&OutSum=500&SignatureValue=277b232ef6891f07c9c0a4017113153b&shpMySuperParam=456&shpa=123"
   end  
 
   def http_raw_data_with_wrong_signature
