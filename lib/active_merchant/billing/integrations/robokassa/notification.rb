@@ -7,7 +7,7 @@ module ActiveMerchant #:nodoc:
             true
           end
           
-          def item_id
+          def order
             params['InvId']
           end
 
@@ -20,7 +20,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def generate_md5_string
-            main_params = ['OutSum', 'InvId'].map {|key| params[key]}
+            main_params = [order, gross]
             custom_param_keys = params.keys.select {|key| key =~ /^shp/}.sort
             custom_params = custom_param_keys.map {|key| "#{key}=#{params[key]}"}
             [main_params, @options[:md5secret], custom_params].flatten.compact.join(':')
