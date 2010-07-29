@@ -1,6 +1,8 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:
+      
+      # Documentation: http://robokassa.ru/Doc/En/Interface.aspx
       module Robokassa 
         autoload :Helper, File.dirname(__FILE__) + '/robokassa/helper.rb'
         autoload :Notification, File.dirname(__FILE__) + '/robokassa/notification.rb'

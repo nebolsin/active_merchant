@@ -1,6 +1,8 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:
+      
+      # Documentation: https://www.liqpay.com/?do=pages&p=cnb10
       module Liqpay 
         autoload :Helper, File.dirname(__FILE__) + '/liqpay/helper.rb'
         autoload :Notification, File.dirname(__FILE__) + '/liqpay/notification.rb'

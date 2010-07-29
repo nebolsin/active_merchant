@@ -1,6 +1,8 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:
+
+      # Documentation: http://www.interkassa.com/docs/interkassa.tech.doc
       module Interkassa 
         autoload :Helper, File.dirname(__FILE__) + '/interkassa/helper.rb'
         autoload :Notification, File.dirname(__FILE__) + '/interkassa/notification.rb'
