@@ -4,7 +4,7 @@ class InterkassaNotificationTest < Test::Unit::TestCase
   include ActiveMerchant::Billing::Integrations
 
   def setup
-    @interkassa = Interkassa::Notification.new(http_raw_data, :md5secret => 'secret')
+    @interkassa = Interkassa::Notification.new(http_raw_data, :secret => 'secret')
   end
 
   def test_accessors

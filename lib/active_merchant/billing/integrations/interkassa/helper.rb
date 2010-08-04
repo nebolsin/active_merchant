@@ -4,7 +4,7 @@ module ActiveMerchant #:nodoc:
       module Interkassa
         class Helper < ActiveMerchant::Billing::Integrations::Helper
           def initialize(order, account, options = {})
-            @md5secret = options.delete(:md5secret)
+            @md5secret = options.delete(:secret)
             
             super
           end

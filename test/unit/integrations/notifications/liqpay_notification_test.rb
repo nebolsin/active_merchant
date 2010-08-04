@@ -4,7 +4,7 @@ class LiqpayNotificationTest < Test::Unit::TestCase
   include ActiveMerchant::Billing::Integrations
 
   def setup
-    @liqpay = Liqpay::Notification.new(http_raw_data, :md5secret => 'secret')
+    @liqpay = Liqpay::Notification.new(http_raw_data, :secret => 'secret')
   end
 
   def test_accessors

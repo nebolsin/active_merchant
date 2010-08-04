@@ -4,7 +4,7 @@ class RobokassaNotificationTest < Test::Unit::TestCase
   include ActiveMerchant::Billing::Integrations
 
   def setup
-    @robokassa = Robokassa::Notification.new(http_raw_data, :md5secret => 'secret')
+    @robokassa = Robokassa::Notification.new(http_raw_data, :secret => 'secret')
   end
 
   def test_accessors
@@ -27,7 +27,7 @@ class RobokassaNotificationTest < Test::Unit::TestCase
   end
   
   def test_wrong_signature
-    @robokassa = Robokassa::Notification.new(http_raw_data_with_wrong_signature, :md5secret => 'secret')
+    @robokassa = Robokassa::Notification.new(http_raw_data_with_wrong_signature, :secret => 'secret')
     assert !@robokassa.acknowledge
   end
 

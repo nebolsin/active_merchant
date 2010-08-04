@@ -4,7 +4,7 @@ class InterkassaHelperTest < Test::Unit::TestCase
   include ActiveMerchant::Billing::Integrations
   
   def setup
-    @helper = Interkassa::Helper.new(1234,'64C18529-4B94-0B5D-7405-F2752F2B716C', :amount => 500, :currency => 'webmoneyz', :md5secret => 'secret')
+    @helper = Interkassa::Helper.new(1234,'64C18529-4B94-0B5D-7405-F2752F2B716C', :amount => 500, :currency => 'webmoneyz', :secret => 'secret')
   end
  
   def test_basic_helper_fields
