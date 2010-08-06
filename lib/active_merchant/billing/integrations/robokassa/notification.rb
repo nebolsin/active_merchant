@@ -33,6 +33,10 @@ module ActiveMerchant #:nodoc:
           def acknowledge    
             security_key == generate_signature
           end
+          
+          def success_response
+            "OK#{item_id}"
+          end
         end
       end
     end

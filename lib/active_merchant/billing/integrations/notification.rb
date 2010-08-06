@@ -46,6 +46,14 @@ module ActiveMerchant #:nodoc:
           production_ips.include?(ip)
         end
         
+        def success_response
+          "OK"
+        end
+        
+        def error_response
+          "ERROR"
+        end
+        
         private
 
         # Take the posted data and move the relevant data into a hash
