@@ -3,7 +3,7 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Robokassa
         class Return < ActiveMerchant::Billing::Integrations::Return
-          def order
+          def item_id
             @params['InvId']
           end
           

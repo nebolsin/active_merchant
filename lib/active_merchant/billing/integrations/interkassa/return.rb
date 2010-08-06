@@ -15,7 +15,7 @@ module ActiveMerchant #:nodoc:
             params['ik_shop_id']
           end
           
-          def order
+          def item_id
             params['ik_payment_id']
           end
           
