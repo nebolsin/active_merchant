@@ -56,7 +56,7 @@ module ActiveMerchant #:nodoc:
           end
           
           def generate_signature_string
-            ['', version, @options[:secret], action_name, sender_phone, account, amount, currency, item_id, transaction_id, status, code, ''].flatten.compact.join('|')
+            ['', version, @options[:secret], action_name, sender_phone, account, gross, currency, item_id, transaction_id, status, code, ''].flatten.compact.join('|')
           end
           
           def generate_signature
