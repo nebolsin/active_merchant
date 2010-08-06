@@ -11,12 +11,12 @@ module ActiveMerchant #:nodoc:
         mattr_accessor :service_url
         self.service_url = 'http://www.interkassa.com/lib/payment.php'
 
-        def self.notification(post)
-          Notification.new(post)
+        def self.notification(query_string, options = {})
+          Notification.new(query_string, options)
         end  
         
-        def self.return(post)
-          Return.new(post)
+        def self.return(query_string)
+          Return.new(query_string)
         end
       end
     end

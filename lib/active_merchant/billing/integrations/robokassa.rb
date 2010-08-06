@@ -11,8 +11,8 @@ module ActiveMerchant #:nodoc:
         mattr_accessor :service_url
         self.service_url = 'https://merchant.roboxchange.com/Index.aspx'
 
-        def self.notification(post)
-          Notification.new(post)
+        def self.notification(query_string, options = {})
+          Notification.new(query_string, options)
         end  
         
         def self.return(query_string)
