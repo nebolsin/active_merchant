@@ -6,4 +6,8 @@ class RobokassaModuleTest < Test::Unit::TestCase
   def test_notification_method
     assert_instance_of Robokassa::Notification, Robokassa.notification('name=cody')
   end
+  
+  def test_return_method
+    assert_instance_of Robokassa::Return, Robokassa.return('name=cody')
+  end
 end 
