@@ -5,16 +5,20 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Liqpay
         class Notification < ActiveMerchant::Billing::Integrations::Notification
+          def self.recognizes?(params)
+            params.has_key?('amount') && params.has_key?('order_id')
+          end
+
           def complete?
             status == 'success'
           end 
 
-          def action_name 
-            params['action_name'] # either 'result_url' or 'server_url'
-          end
-          
           def account
             params['merchant_id']
+          end
+
+          def amount
+            BigDecimal.new(gross)
           end
           
           def item_id
@@ -25,7 +29,10 @@ module ActiveMerchant #:nodoc:
             params['transaction_id']
           end
 
-          # When was this payment received by the client. 
+          def action_name
+            params['action_name'] # either 'result_url' or 'server_url'
+          end
+
           def version
             params['version']
           end
@@ -35,10 +42,9 @@ module ActiveMerchant #:nodoc:
           end
 
           def security_key
-            params['signature']
+            params[ActiveMerchant::Billing::Integrations::Liqpay.signature_parameter_name]
           end
 
-          # the money amount we received in X.2 decimal.
           def gross
             params['amount']
           end

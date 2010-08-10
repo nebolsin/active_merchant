@@ -11,6 +11,13 @@ module ActiveMerchant #:nodoc:
         mattr_accessor :service_url
         self.service_url = 'https://liqpay.com/?do=clickNbuy'
 
+        mattr_accessor :signature_parameter_name
+        self.signature_parameter_name = 'signature'
+
+        def self.helper(order, account, options = {})
+          Helper.new(order, account, options)
+        end
+        
         def self.notification(query_string, options = {})
           Notification.new(query_string, options)
         end  

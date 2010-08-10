@@ -9,7 +9,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def form_fields
-            @fields.merge('SignatureValue' => generate_signature)
+            @fields.merge(ActiveMerchant::Billing::Integrations::Robokassa.signature_parameter_name => generate_signature)
           end
             
           def generate_signature_string

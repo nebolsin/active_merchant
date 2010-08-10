@@ -14,6 +14,11 @@ module ActiveMerchant #:nodoc:
           parse(post)
         end
 
+        # subclasses should implement this method to make parameter-based integration detection work
+        def self.recognizes?(params)
+          false
+        end
+
         def status
           raise NotImplementedError, "Must implement this method in the subclass"
         end

@@ -5,12 +5,20 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Interkassa
         class Notification < ActiveMerchant::Billing::Integrations::Notification
+          def self.recognizes?(params)
+            params.has_key?('ik_payment_amount') && params.has_key?('ik_payment_id')
+          end
+
           def complete?
             status == 'success'
           end 
 
           def account
             params['ik_shop_id']
+          end
+
+          def amount
+            BigDecimal.new(gross)
           end
           
           def item_id
@@ -26,7 +34,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def security_key
-            params['ik_sign_hash']
+            params[ActiveMerchant::Billing::Integrations::Interkassa.signature_parameter_name]
           end
           
           def custom_fields
@@ -59,11 +67,11 @@ module ActiveMerchant #:nodoc:
           end
           
           def generate_signature
-            Digest::MD5.hexdigest(generate_signature_string)
+            Digest::MD5.hexdigest(generate_signature_string).upcase
           end
 
           def acknowledge      
-            security_key == generate_signature.upcase
+            security_key == generate_signature
           end
         end
       end

@@ -3,20 +3,32 @@ module ActiveMerchant #:nodoc:
     module Integrations #:nodoc:
       module Robokassa
         class Notification < ActiveMerchant::Billing::Integrations::Notification
+          def self.recognizes?(params)
+            params.has_key?('InvId') && params.has_key?('OutSum')
+          end
+
           def complete?
             true
           end
           
+          def amount
+            BigDecimal.new(gross)
+          end
+
           def item_id
             params['InvId']
           end
 
           def security_key
-            params['SignatureValue']
+            params[ActiveMerchant::Billing::Integrations::Robokassa.signature_parameter_name]
           end
 
           def gross
             params['OutSum']
+          end
+
+          def status
+            'success'
           end
 
           def generate_signature_string

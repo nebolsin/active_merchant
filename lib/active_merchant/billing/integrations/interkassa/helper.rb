@@ -10,7 +10,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def form_fields
-            @fields.merge('ik_sign_hash' => generate_signature)
+            @fields.merge(ActiveMerchant::Billing::Integrations::Interkassa.signature_parameter_name => generate_signature)
           end
             
           def generate_signature_string
